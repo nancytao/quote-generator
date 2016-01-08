@@ -1,0 +1,1 @@
+A simple javascript project that displays random quotes using a random number generator
