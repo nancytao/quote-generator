@@ -16,12 +16,32 @@ function getQuote() {
             } else {
                 $("#quote-author").text(data.quoteAuthor);
             }
+            readyTweet(data);
         },
         error: function(data) {
             $("#quote-text").text("Error loading quote:(");
             $("#quote-author").text("I'm sorry!");
         }
     })
+}
+
+function readyTweet(data) {
+    tweetText = "https://twitter.com/intent/tweet?text=Here's a quote, courtesy of @nancytao: "; // 39 characters
+    if (data.quoteText.length + data.quoteAuthor.length > 140 - 39 - 3) { // 3 for " - "
+        if (data.quoteText.length <= 94) {
+            tweetText += data.quoteText;
+        } else {
+            tweetText += data.quoteText.substring(0, 91) + "...";
+        }
+    } else {
+        tweetText += data.quoteText + " - ";
+        if (data.quoteAuthor == "") {
+            tweetText += "Unknown";
+        } else {
+            tweetText += data.quoteAuthor;
+        }
+    }
+    $("#tweet").attr("href", tweetText);
 }
 
 $(document).ready(function() {
