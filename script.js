@@ -19,7 +19,7 @@ function getQuote() {
             readyTweet(data);
         },
         error: function(data) {
-            $("#quote-text").text("Error loading quote:(");
+            $("#quote-text").text("Error loading quote :(");
             $("#quote-author").text("I'm sorry!");
 
             $("#tweet").attr("href", "https://twitter.com/intent/tweet?text=@nancytao is so cool!");
